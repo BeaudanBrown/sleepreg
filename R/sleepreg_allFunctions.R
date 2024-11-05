@@ -720,10 +720,29 @@ SRI_from_GGIR <- function(outputdir = c(),
         ngtsum.rd <- read.csv(nightsumloc, header = TRUE)
         ngtsum.rd <- ngtsum.rd[grepl(SIdef, ngtsum.rd$sleepparam),]
 
-        nightsummary.rd <- ngtsum.rd[,c(1,2,3,4,19,20,26,27)] # Read night summary data
+        nightsummary.rd <- ngtsum.rd[, c(
+                                         "ID",  # 1
+                                         "night", # 2
+                                         "sleeponset",  # 3
+                                         "wakeup",  # 4
+                                         "sleeponset_ts", # 19
+                                         "wakeup_ts", # 10
+                                         "calendar_date", # 26
+                                         "filename")] # 27
         nightsummary <- nightsummary.rd[nightsummary.rd$filename == ppts[p],-1]
 
-        nightsummary2.rd <- ngtsum.rd[,c(1,2,3,4,5,7,8,9,14,26,27)] # Different subset of nightsummary for sl. var. extraction
+        nightsummary2.rd <- ngtsum.rd[, c(
+                                         "ID",  # 1
+                                         "night", # 2
+                                         "sleeponset",  # 3
+                                         "wakeup",  # 4
+                                         "SptDuration", # 5
+                                         "guider_onset",  # 7
+                                         "guider_wakeup", # 8
+                                         "guider_SptDuration",  # 9
+                                         "SleepDurationInSpt",  # 14
+                                         "calendar_date", # 26
+                                         "filename")] # 27
         nightsummary2 <- nightsummary2.rd[nightsummary2.rd$filename == ppts[p],-1]
 
         # Load SIBs
